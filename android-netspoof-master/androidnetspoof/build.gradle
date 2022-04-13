@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "uk.digitalsquid.netspoofer"
+        minSdkVersion 16
+        targetSdkVersion 30
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    sourceSets.main.jni.srcDirs = []
+    ndkVersion '24.0.8215888'
+    useLibrary 'org.apache.http.legacy'
+}
+
+dependencies {
+    implementation fileTree(dir: new File(buildDir, 'libs'), include: '*.jar')
+
+    implementation 'org.jsoup:jsoup:1.8.1'
+    implementation 'com.google.android.gms:play-services:9.0.2'
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn ndkLibsToJar, ndkBinariesToJar, ndkBinariesToJar16, ndkDataToJar
+}
+
+task ndkLibsToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a JAR of the native libs') {
+    destinationDir new File(buildDir, 'libs')
+    baseName 'ndk-libs'
+    extension 'jar'
+    from(new File(buildDir, 'libs')) {
+        include '**/*.so'
+    }
+    into 'lib/'
+}
+
+
+task ndkBinariesToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a JAR of the native binaries') {
+    destinationDir new File(buildDir, 'libs')
+    baseName 'ndk-binaries'
+    extension 'jar'
+    from(new File(buildDir, 'libs')) {
+        include '**/arp-scan'
+        include '**/arpspoof'
+        include '**/iptables'
+    }
+    into 'assets/binaries/android-19'
+}
+
+task ndkBinariesToJar16(type: Zip, dependsOn: 'ndkBuild19', description: 'Create a JAR of the native binaries for Android 16+') {
+    destinationDir new File(buildDir, 'libs')
+    baseName 'ndk-binaries-19'
+    extension 'jar'
+    from(new File(buildDir, 'android-19/libs')) {
+        include '**/arp-scan'
+        include '**/arpspoof'
+        include '**/iptables'
+    }
+    into 'assets/binaries/android-19'
+}
+
+
+task ndkDataToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a JAR of the native data') {
+    destinationDir new File(buildDir, 'libs')
+    baseName 'ndk-data'
+    extension 'jar'
+    from(new File('src/main/jni/arp-scan')) {
+        include '**/ieee-iab.txt'
+        include '**/ieee-oui.txt'
+        include '**/mac-vendor.txt'
+    }
+    into 'assets/data/'
+}
+
+
+task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
+    def ndkDir = project.android.ndkDirectory.absolutePath
+    println(ndkDir)
+    commandLine "$ndkDir/ndk-build",
+            'NDK_PROJECT_PATH=build',
+            'APP_BUILD_SCRIPT=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jnisrc/main/jni/Android.mk',
+            'NDK_APPLICATION_MK=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jni/Application.mk',
+            '-j8'
+}
+
+
+
+
+task ndkBuild19(type: Exec, description: 'Compile JNI source via NDK for Android 19+') {
+    def ndkDir = project.android.ndkDirectory.absolutePath
+    println(ndkDir)
+    commandLine "$ndkDir/ndk-build",
+            'NDK_PROJECT_PATH=build/android-19',
+            'APP_BUILD_SCRIPT=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jnisrc/main/jni/Android.mk',
+            'NDK_APPLICATION_MK=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jni/Application-19.mk',
+            '-j8'
+}

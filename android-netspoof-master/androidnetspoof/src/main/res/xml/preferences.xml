@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * This file is part of Network Spoofer for Android.
+ * Network Spoofer - change and mess with webpages and the internet on
+ * other people's computers
+ * Copyright (C) 2014 Will Shackleton <will@digitalsquid.co.uk>
+ *
+ * Network Spoofer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Network Spoofer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Network Spoofer, in the file COPYING.
+ * If not, see <http://www.gnu.org/licenses/>.
+ * -->
+
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/preferences">
+    <PreferenceCategory android:title="@string/programPrefs">
+        <EditTextPreference android:title="@string/pathToSu" android:key="pathToSu" android:summary="@string/pathToSuDesc"></EditTextPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/automaticOptions">
+        <CheckBoxPreference android:title="@string/autoChooseRouter" android:key="autoChooseRouter" android:summary="@string/autoChooseRouterDesc"></CheckBoxPreference>
+        <CheckBoxPreference android:title="@string/autoChooseVictim" android:key="autoChooseVictim" android:summary="@string/autoChooseVictimDesc"></CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/performance">
+        <EditTextPreference android:key="ipScanThreads" android:summary="@string/ipScanThreadsDesc" android:title="@string/ipScanThreads" android:defaultValue="4"></EditTextPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs_optout">
+        <CheckBoxPreference android:defaultValue="false" android:summary="@string/prefs_stats_desc" android:key="notrack" android:title="@string/prefs_stats"></CheckBoxPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

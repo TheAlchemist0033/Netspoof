@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * This file is part of Network Spoofer for Android.
+ * Network Spoofer - change and mess with webpages and the internet on
+ * other people's computers
+ * Copyright (C) 2014 Will Shackleton <will@digitalsquid.co.uk>
+ *
+ * Network Spoofer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Network Spoofer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Network Spoofer, in the file COPYING.
+ * If not, see <http://www.gnu.org/licenses/>.
+ * -->
+
+<resources>
+    <string name="agreementTitle">Network Spoofer</string>
+    <string name="agreementContents1">I agree to only use Network Spoofer on residential and personal networks with the permission of the network owner.</string>
+    <string name="agreementContents2">
+        There is no intention for Network Spoofer to include any malicious features.
+        This application is a fun demonstration of how vulnerable home networks are to simple attacks,
+        with permission of the network owner - DO NOT attempt to use Network Spoofer on any corporate
+        or other non-residential networks (eg. at school, university). It becomes very obvious when
+        Network Spoofer is being used on a Network, and use of Network Spoofer will be considered
+        malicious hacking by network administrators.
+    </string>
+    <string name="agreementPositive">Agree</string>
+    <string name="agreementNegative">Exit</string>
+    <string name="changelog">New in this release:\n
+        * Android Lollipop 5.1 support - more advanced root checking for root apps that are disabled by default.
+    </string>
+    
+    <string name="updateAvailableTitle">Update Available</string>
+    <string name="updateAvailableDescription">There is a new version of Network Spoofer available (%s). Would you like to download it?</string>
+    <string name="updateAvailableYes">Download</string>
+    <string name="updateAvailableNo">Later</string>
+    
+</resources>

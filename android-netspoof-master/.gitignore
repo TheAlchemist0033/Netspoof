@@ -1,0 +1,46 @@
+# IntelliJ
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/libraries/
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+bin/
+bglarge.png
+bgmedium.png
+bgsmall.png
+bin/android-netspoof.newproc.apk
+bg-large.png
+bg-med.png
+bg-small.png
+bin/android-netspoof.api8.apk
+bzr.sf
+obj
+obj/local
+bin/classes
+bin/res
+bin/android-netspoof.zip.apk
+bin/AndroidManifest.xml
+bin/dexedLibs
+bin/jarlist.cache
+
+# Gradle
+.gradle/
+build/
+local.properties
+
+# gedit
+*~
+
+# Misc
+androidnetspoof/release
