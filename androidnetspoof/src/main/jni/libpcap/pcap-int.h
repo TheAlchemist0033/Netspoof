@@ -283,10 +283,7 @@ int	pcap_offline_read(pcap_t *, int, pcap_handler, u_char *);
 int	pcap_read(pcap_t *, int cnt, pcap_handler, u_char *);
 
 #ifndef HAVE_STRLCPY
-#define strlcpy(x, y, z) \
-	(strncpy((x), (y), (z)), \
-	 ((z) <= 0 ? 0 : ((x)[(z) - 1] = '\0')), \
-	 strlen((y)))
+//#define strlcpy(x, y, z) (strncpy((x), (y), (z)),((z) <= 0 ? 0 : ((x)[(z) - 1] = '\0')), strlen((y)))
 #endif
 
 #include <stdarg.h>

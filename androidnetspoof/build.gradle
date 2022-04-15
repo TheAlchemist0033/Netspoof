@@ -5,8 +5,8 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "uk.digitalsquid.netspoofer"
-        minSdkVersion 16
+        applicationId "us.Alchemist.netspoofer"
+        minSdkVersion 21
         targetSdkVersion 30
     }
 
@@ -23,7 +23,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: new File(buildDir, 'libs'), include: '*.jar')
-
+    implementation 'junit:junit:4.12'
+    //androidTestCompile 'junit:junit:4.12'
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'org.jsoup:jsoup:1.8.1'
     implementation 'com.google.android.gms:play-services:9.0.2'
 }
@@ -52,10 +54,10 @@ task ndkBinariesToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a J
         include '**/arpspoof'
         include '**/iptables'
     }
-    into 'assets/binaries/android-19'
+    into 'assets/binaries/android'
 }
 
-task ndkBinariesToJar16(type: Zip, dependsOn: 'ndkBuild19', description: 'Create a JAR of the native binaries for Android 16+') {
+task ndkBinariesToJar16(type: Zip, dependsOn: 'ndkBuild19', description: 'Create a JAR of the native binaries for Android 19+') {
     destinationDir new File(buildDir, 'libs')
     baseName 'ndk-binaries-19'
     extension 'jar'
@@ -84,9 +86,9 @@ task ndkDataToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a JAR o
 task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
     def ndkDir = project.android.ndkDirectory.absolutePath
     println(ndkDir)
-    commandLine "$ndkDir/ndk-build",
+    commandLine "$ndkDir\\ndk-build.cmd",
             'NDK_PROJECT_PATH=build',
-            'APP_BUILD_SCRIPT=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jnisrc/main/jni/Android.mk',
+            'APP_BUILD_SCRIPT=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jni/Android.mk',
             'NDK_APPLICATION_MK=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jni/Application.mk',
             '-j8'
 }
@@ -97,9 +99,9 @@ task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
 task ndkBuild19(type: Exec, description: 'Compile JNI source via NDK for Android 19+') {
     def ndkDir = project.android.ndkDirectory.absolutePath
     println(ndkDir)
-    commandLine "$ndkDir/ndk-build",
+    commandLine "$ndkDir\\ndk-build.cmd",
             'NDK_PROJECT_PATH=build/android-19',
-            'APP_BUILD_SCRIPT=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jnisrc/main/jni/Android.mk',
-            'NDK_APPLICATION_MK=C:/Users/jekyl/Downloads/android-netspoof-master/android-netspoof-master/androidnetspoof/src/main/jni/Application-19.mk',
+            'APP_BUILD_SCRIPT=src/main/jni/Android.mk',
+            'NDK_APPLICATION_MK=src/main/jni/Application-19.mk',
             '-j8'
 }
